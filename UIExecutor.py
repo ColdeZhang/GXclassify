@@ -12,7 +12,7 @@ def init():
     ex.updatePage('')
     brow = webdriver.Firefox()
     brow.maximize_window()    #最大化窗口
-    brow.get('file:///home/pi/Desktop/GXtrashClassify/ui.html')    #打开地址
+    brow.get('file:///home/pi/Desktop/GXclassify/ui.html')    #打开地址
     brow.refresh()    #刷新打开的页面
     return brow
     #driver.close()     #关闭浏览器
