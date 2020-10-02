@@ -1,6 +1,6 @@
 from pyecharts import options as opts
 from pyecharts.charts import Grid, Liquid
-from pyecharts.commons.utils import JsCode
+from pyecharts.globals import SymbolType
 
 c1 = (
     Liquid()
