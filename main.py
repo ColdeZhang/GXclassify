@@ -2,6 +2,7 @@ import time as sleep
 import extension as ex
 import UIExecutor as UI
 import objectRecogni as OR
+import RPi.GPIO as GPIO
 
 # devInfo = ['16','7','32','6','78','15','2','4']
 
@@ -49,7 +50,4 @@ try:
             UI.videoPage(browser)
             btnState = False
 finally:
-
-
-
-
+    GPIO.cleanup()
