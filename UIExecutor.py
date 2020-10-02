@@ -21,7 +21,7 @@ def init():
 def videoPage(brow):
     '宣传视频播放界面'
     #<video width="320" height="240" controls><source src="res/UI_res/movie.webm" type="video/webm"></video>
-    ex.updatePage('<html><body bgcolor="black"><span ></span><h1 style="color: #ffffff">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div style="text-align: center; width: 100% "><video width="65%" autoplay="autoplay" loop="loop"><source src="res/UI_res/video.webm" type="video/webm"></video></div></body></html>')
+    ex.updatePage('<html><body bgcolor="black"><span ></span><h1 style="color: #ffffff">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div style="text-align: center; width: 100% "><video width="65%" autoplay loop><source src="res/UI_res/video.webm" type="video/webm"></video></div></body></html>')
     brow.refresh()
     pass
 

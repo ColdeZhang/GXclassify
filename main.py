@@ -8,7 +8,7 @@ import UIExecutor as UI
 brow = UI.init()
 time.sleep(1)
 UI.videoPage(brow)
-time.sleep(20)
+time.sleep(100)
 UI.waitingPage(brow, '测试中……')
 time.sleep(4)
 UI.outputPage(brow, '某垃圾', '有害垃圾')
