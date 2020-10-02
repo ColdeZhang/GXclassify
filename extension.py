@@ -2,6 +2,9 @@
 import RPi.GPIO as GPIO
 import sys
 import time
+from pyecharts import options as opts
+from pyecharts.charts import Grid, Liquid
+from pyecharts.commons.utils import JsCode
 
 def updatePage(input):
     '更新UI界面'
