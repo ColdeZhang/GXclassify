@@ -7,12 +7,12 @@ from pyecharts import options as opts
 from pyecharts.charts import Grid, Liquid
 from pyecharts.commons.utils import JsCode
 
-btnPin = 13
+btnPin = 36
 
 #--------------1-----2-----3
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
-stepperPin = [1, 1, 1 ,1 ,1 ,1]
+stepperPin = [29, 31, 33 ,35 ,37 ,32]
 
 devPos = 0
 
@@ -45,9 +45,9 @@ def updatePage(input):
 def stepperCtrl(stepperID):
     '步进电机基础控制，传入电机编号'
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.HIGH)
-    time.sleep(0.5)
+    time.sleep(0.0005)
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.LOW)
-    time.sleep(0.5)
+    time.sleep(0.0005)
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
