@@ -20,7 +20,8 @@ def init():
 
 def videoPage(brow):
     '宣传视频播放界面'
-    ex.updatePage('<body bgcolor="black"><div class="container-fluid"><div class="row-fluid"><div class="span12"><h3>工程训练自动垃圾分类系统</h3></div></div><div class="row-fluid"><div class="span12"><video width="320" height="240" controls><source src="res/UI_res/movie.webm" type="video/webm"></video></div></div></div></body>')
+    #<video width="320" height="240" controls><source src="res/UI_res/movie.webm" type="video/webm"></video>
+    ex.updatePage('<html><body bgcolor="black"><span ></span><h1 style="color: #ffffff">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div style="height: 10%"></div><div style="text-align: center; width: 100% "><video width="80%" height="" controls><source src="res/UI_res/movie.webm" type="video/webm"></video></div></body></html>')
     brow.refresh()
     pass
 
