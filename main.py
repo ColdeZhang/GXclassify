@@ -49,7 +49,7 @@ try:
             UI.videoPage(browser)
             btnState = False
 finally:
-    GPIO.cleanup()
+
 
 
 
