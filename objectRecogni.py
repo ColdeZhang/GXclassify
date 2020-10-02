@@ -23,9 +23,6 @@ new_model = tf.keras.models.load_model('res/or_model/my_model5.h5')
 new_model.summary()
 
 
-
-
-
 def get_images(directory):
     Images = []
     label = 0
@@ -68,11 +65,12 @@ def get_classlabel(class_code):
     
     
     
-    
-pred_images,no_labels = get_images('res/or_input_res/seg_pred/')
-pred_images = np.array(pred_images)
-print(pred_images.shape)
-pred_class = get_classlabel(new_model.predict_classes(pred_images)[0])
-print(pred_class)
 
+def OR():
+    pred_images,no_labels = get_images('res/or_input_res/seg_pred/')
+    pred_images = np.array(pred_images)
+    print(pred_images.shape)
+    pred_class = get_classlabel(new_model.predict_classes(pred_images)[0])
+    print(pred_class)
+    return pred_class
 
