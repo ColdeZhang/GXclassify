@@ -13,7 +13,7 @@ obsSen = 27
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
 stepperPin = [5, 6, 13, 19, 26, 25]
-lmtSwitch = [22, 23, 24]
+lmtSwitch = [24, 22, 23]
 
 devPos = 0
 browser = UI.init()
@@ -143,10 +143,10 @@ def depthDeteced():
     return res
 
 def moveAndThrow(objTpye):
-    UI.waitingPage(main.browser, '分类ing……')
+    UI.waitingPage(browser, '分类ing……')
     objID = type2id(objTpye)
     move2pos(deltaPos(devPos, objID * 90) + 5)
-    UI.waitingPage(main.browser, '投递ing……')
+    UI.waitingPage(browser, '投递ing……')
     throw()
 
 
