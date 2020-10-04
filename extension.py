@@ -130,10 +130,11 @@ def obsSens():
         return False
 
 #====================
-def depthDeteced():
+def depthDeteced(objType):
     '检测当前桶深'
     emptDis = 400
-    move2pos(deltaPos(devPos, objID * 90 + 10))
+    objID = type2id(objTpye)
+    move2pos(deltaPos(devPos, int(objID) * 90 + 10))
     dis = urtalSonic()
     res = emptDis - dis
     if res < 0:
@@ -145,7 +146,7 @@ def depthDeteced():
 def moveAndThrow(objTpye):
     UI.waitingPage(browser, '分类ing……')
     objID = type2id(objTpye)
-    move2pos(deltaPos(devPos, objID * 90) + 5)
+    move2pos(deltaPos(devPos, int(objID) * 90) + 5)
     UI.waitingPage(browser, '投递ing……')
     throw()
 
