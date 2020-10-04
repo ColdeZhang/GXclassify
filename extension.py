@@ -10,7 +10,7 @@ from pyecharts.commons.utils import JsCode
 btnPin = 36
 usPin = 12
 usEcho = 11
-
+obsSens = 40
 #--------------1-----2-----3
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
@@ -24,11 +24,13 @@ def devInit():
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(usPin, GPIO.OUT)
     GPIO.setup(usEcho, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(obsSens, GPIO.IN, , pull_up_down=GPIO.PUD_UP)
     for i in range(6):
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(3):
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
         GPIO.output(stepperPin[i*2], GPIO.HIGH)
+    stepperInit()
     
 
 def stepperInit():
@@ -41,7 +43,7 @@ def stepperInit():
 
 #============================
 def btnPressed():
-    if GPIO.input == GPIO.HIGH:
+    if GPIO.input(btnPin) == GPIO.HIGH:
         result = True
     else:
         result = False
@@ -55,9 +57,9 @@ def updatePage(input):
 def stepperCtrl(stepperID):
     '步进电机基础控制，传入电机编号'
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.HIGH)
-    time.sleep(0.0005)
+    time.sleep(0.0006)
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.LOW)
-    time.sleep(0.0005)
+    time.sleep(0.0006)
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
@@ -84,12 +86,20 @@ def move2pos(angle):
         GPIO.output(stepperPin[3], GPIO.LOW)
     for i in angle * 190 / 16.2:
         stepperCtrl(2)
-    devPos = devPos + angle
     
 
 def deltaPos(start, end):
+    if end >= 360:
+        end = end - 360
 
-
+    if abs(end - start) <= 180:
+        delta = end - start
+    else:
+        if end > start:
+            delta = end - start - 360
+        else:
+            delta = 360 - start + end
+    devPos = end
     return delta
 
 def urtalSonic():
@@ -115,6 +125,12 @@ def type2id(objTpye):
     elif objTpye == '有害垃圾':
         return 3
 
+def obsSens():
+    if GPIO.input(obsSens) == GPIO.LOW:
+        return True
+    else:
+        return False
+
 #====================
 def depthDeteced():
     '检测当前桶深'
@@ -131,7 +147,7 @@ def depthDeteced():
 def moveAndThrow(objTpye):
     UI.waitingPage(browser, '分类ing……')
     objID = type2id(objTpye)
-    move2pos(deltaPos(devPos, objID * 90))
+    move2pos(deltaPos(devPos, objID * 90) + 5)
     UI.waitingPage(browser, '投递ing……')
     throw()
 
