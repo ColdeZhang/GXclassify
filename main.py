@@ -32,7 +32,7 @@ try:
             print('start')
             UI.waitingPage(ex.browser, '正在识别，请稍后……')
             objName = OR.ans()
-            objType = OR.ans()
+            objType = '可回收物'
             UI.outputPage(ex.browser, objName, objType)
             if objType == '可回收物':
                 UI.waitingPage(ex.browser, '正在压缩……')
