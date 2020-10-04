@@ -4,9 +4,7 @@ import sys
 import time
 import UIExecutor as UI
 import main
-from pyecharts import options as opts
-from pyecharts.charts import Grid, Liquid
-from pyecharts.commons.utils import JsCode
+
 
 btnPin = 4
 usPin = 17
@@ -21,6 +19,7 @@ lmtSwitch = [22, 23, 24]
 devPos = 0
 
 def devInit():
+    '设备初始化'
     UI.waitingPage(main.browser, '设备启动初始化中……')
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
