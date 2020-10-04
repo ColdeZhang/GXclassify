@@ -111,7 +111,7 @@ def urtalSonic():
     while GPIO.input(usEcho):
         pass
     t2 = time.time()
-    return (t2 - t1) * 340 * 100 / 2
+    return (t2 - t1) * 340 * 1000 / 2
 
 def type2id(objType):
     if objType == '可回收物':
