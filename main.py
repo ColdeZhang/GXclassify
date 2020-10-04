@@ -34,6 +34,7 @@ try:
             objName = OR.ans()
             objType = '可回收物'
             UI.outputPage(ex.browser, objName, objType)
+            sleep(6)
             if objType == '可回收物':
                 UI.waitingPage(ex.browser, '正在压缩……')
                 ex.crush()
@@ -45,7 +46,7 @@ try:
             devInfo[typeID] = ex.depthDeteced(objType)
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
             UI.devInfoPage(devInfo)
-            sleep(6)
+            sleep(4)
             UI.videoPage(ex.browser)
             btnState = False
 finally:
