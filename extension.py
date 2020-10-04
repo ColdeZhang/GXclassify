@@ -26,7 +26,7 @@ def devInit():
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(usPin, GPIO.OUT)
     GPIO.setup(usEcho, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(obsSens, GPIO.IN, , pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(obsSens, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     for i in range(6):
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(3):
