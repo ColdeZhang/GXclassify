@@ -136,6 +136,7 @@ def depthDeteced(objType):
     objID = type2id(objType)
     move2pos(deltaPos(devPos, objID * 90 + 10))
     dis = urtalSonic()
+    print(dis)
     res = emptDis - dis
     if res < 0:
         res = 0
