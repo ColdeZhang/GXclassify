@@ -45,7 +45,7 @@ try:
             typeID = ex.type2id(objType) * 2
             devInfo[typeID] = ex.depthDeteced(objType)
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
-            UI.devInfoPage(devInfo)
+            UI.devInfoPage(ex.browser, devInfo)
             time.sleep(4)
             UI.videoPage(ex.browser)
             btnState = False
