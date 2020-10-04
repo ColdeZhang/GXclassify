@@ -17,8 +17,6 @@ import RPi.GPIO as GPIO
 # #UI.devInfoPage(brow,devInfo)
 
 browser = UI.init()
-ex.devInit()
-UI.videoPage(browser)
 btnState = False
 
 #----------可回收物---厨余垃圾---其他垃圾---有害垃圾
@@ -26,11 +24,12 @@ btnState = False
 devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 
 try:
-    while True:
+    while ex.devInit():
         if btnState == False:
             btnState = ex.btnPressed()        
         elif btnState == True:
             # main logic
+            print('start')
             UI.waitingPage(browser, '正在识别，请稍后……')
             objName = OR()
             objType = OR()

@@ -3,24 +3,26 @@ import RPi.GPIO as GPIO
 import sys
 import time
 import UIExecutor as UI
+import main
 from pyecharts import options as opts
 from pyecharts.charts import Grid, Liquid
 from pyecharts.commons.utils import JsCode
 
-btnPin = 36
-usPin = 12
-usEcho = 11
-obsSens = 40
+btnPin = 4
+usPin = 17
+usEcho = 18
+obsSens = 27
 #--------------1-----2-----3
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
-stepperPin = [29, 31, 33 ,35 ,37 ,32]
-lmtSwitch = [7, 16, 18]
+stepperPin = [5, 6, 13, 19, 26, 25]
+lmtSwitch = [22, 23, 24]
 
 devPos = 0
 
 def devInit():
-    GPIO.setmode(GPIO.BOARD)
+    UI.waitingPage(main.browser, '设备启动初始化中……')
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(usPin, GPIO.OUT)
     GPIO.setup(usEcho, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -31,15 +33,16 @@ def devInit():
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
         GPIO.output(stepperPin[i*2], GPIO.HIGH)
     stepperInit()
+    UI.videoPage(main.browser)
+    return True
     
 
 def stepperInit():
     '步进电机初始化'
-    devPos = 0
     for i in range(3):
-        GPIO.output(stepperPin[i*2], GPIO.HIGH)
-        while GPIO.input == GPIO.LOW:
+        while GPIO.input(lmtSwitch[i-1]) == GPIO.LOW:
             stepperCtrl(i)
+    devPos = 0
 
 #============================
 def btnPressed():
@@ -145,10 +148,10 @@ def depthDeteced():
     return res
 
 def moveAndThrow(objTpye):
-    UI.waitingPage(browser, '分类ing……')
+    UI.waitingPage(main.browser, '分类ing……')
     objID = type2id(objTpye)
     move2pos(deltaPos(devPos, objID * 90) + 5)
-    UI.waitingPage(browser, '投递ing……')
+    UI.waitingPage(main.browser, '投递ing……')
     throw()
 
 
