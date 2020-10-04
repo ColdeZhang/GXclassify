@@ -51,11 +51,6 @@ def btnPressed():
         result = False
     return result
 
-def updatePage(input):
-    '更新UI界面'
-    with open("ui.html","w") as f:
-        f.write(input)
-
 def stepperCtrl(stepperID):
     '步进电机基础控制，传入电机编号'
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.HIGH)
