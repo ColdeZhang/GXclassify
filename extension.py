@@ -113,14 +113,14 @@ def urtalSonic():
     t2 = time.time()
     return (t2 - t1) * 340 * 100 / 2
 
-def type2id(objTpye):
+def type2id(objType):
     if objType == '可回收物':
         return 0
-    elif objTpye == '厨余垃圾':
+    elif objType == '厨余垃圾':
         return 1
-    elif objTpye == '其他垃圾':
+    elif objType == '其他垃圾':
         return 2
-    elif objTpye == '有害垃圾':
+    elif objType == '有害垃圾':
         return 3
 
 def obsSens():
