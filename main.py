@@ -1,5 +1,5 @@
 import time as sleep
-import extension as ex
+from extension import extension as ex
 import UIExecutor as UI
 import objectRecogni as OR
 import RPi.GPIO as GPIO
@@ -18,14 +18,14 @@ import RPi.GPIO as GPIO
 
 browser = UI.init()
 btnState = False
-ex.devInit()
+
 
 #----------可回收物---厨余垃圾---其他垃圾---有害垃圾
 #----------容量-个数--容量-个数--容量-个数--容量-个数
 devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 
 try:
-    while True:
+    while ex.devInit():
         if btnState == False:
             btnState = ex.btnPressed()        
         elif btnState == True:
