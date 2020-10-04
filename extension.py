@@ -41,6 +41,7 @@ def stepperInit():
     for i in range(3):
         while GPIO.input(lmtSwitch[i-1]) == GPIO.HIGH:
             stepperCtrl(i)
+        print(i,"号电机复位成功")
     devPos = 0
 
 #============================
