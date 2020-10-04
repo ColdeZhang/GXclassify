@@ -20,7 +20,7 @@ browser = UI.init()
 
 def devInit():
     '设备初始化'
-    UI.waitingPage(main.browser, '设备启动初始化中……')
+    UI.waitingPage(browser, '设备启动初始化中……')
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(usPin, GPIO.OUT)

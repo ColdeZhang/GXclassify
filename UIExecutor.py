@@ -9,6 +9,7 @@ import extension as ex
 
 def init():
     '初始化UI界面'
+    ex.updatePage('')
     brow = webdriver.Firefox()
     brow.maximize_window()    #最大化窗口
     brow.get('file:///home/pi/Desktop/GXclassify/ui.html')    #打开地址
