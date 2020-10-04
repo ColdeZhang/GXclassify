@@ -39,8 +39,10 @@ def devInit():
 def stepperInit():
     '步进电机初始化'
     for i in range(3):
-        while GPIO.input(lmtSwitch[i-1]) == GPIO.LOW:
+        if GPIO.input(lmtSwitch[i-1]) == GPIO.LOW:
             stepperCtrl(i)
+        else:
+            print(i,'号电机校准完毕')
     devPos = 0
 
 #============================

@@ -18,13 +18,13 @@ import RPi.GPIO as GPIO
 
 btnState = False
 
-
+initT = ex.devInit()
 #----------可回收物---厨余垃圾---其他垃圾---有害垃圾
 #----------容量-个数--容量-个数--容量-个数--容量-个数
 devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 
 try:
-    while ex.devInit():
+    while initT == True:
         if btnState == False:
             btnState = ex.btnPressed()        
         elif btnState == True:
