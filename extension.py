@@ -8,33 +8,43 @@ from pyecharts.charts import Grid, Liquid
 from pyecharts.commons.utils import JsCode
 
 btnPin = 36
+usPin = 12
+usEcho = 11
 
 #--------------1-----2-----3
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
 stepperPin = [29, 31, 33 ,35 ,37 ,32]
+lmtSwitch = [7, 16, 18]
 
 devPos = 0
 
 def devInit():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    for i in range(len(stepperPin)):
+    GPIO.setup(usPin, GPIO.OUT)
+    GPIO.setup(usEcho, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    for i in range(6):
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(3):
+        GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
         GPIO.output(stepperPin[i*2], GPIO.HIGH)
     
 
 def stepperInit():
     '步进电机初始化'
-    pass
+    devPos = 0
+    for i in range(3):
+        GPIO.output(stepperPin[i*2], GPIO.HIGH)
+        while GPIO.input == GPIO.LOW:
+            stepperCtrl(i)
 
 #============================
 def btnPressed():
     if GPIO.input == GPIO.HIGH:
-        result == True
+        result = True
     else:
-        result == False
+        result = False
     return result
 
 def updatePage(input):
@@ -79,11 +89,21 @@ def move2pos(angle):
 
 def deltaPos(start, end):
 
+
     return delta
 
 def urtalSonic():
     '超声波测距'
-    return distance
+    GPIO.output(usPin, GPIO.HIGH)
+    time.sleep(0.00015)
+    GPIO.output(usPin, GPIO.LOW)
+    while not GPIO.input(usEcho):
+        pass
+    t1 = time.time()
+    while GPIO.input(usEcho):
+        pass
+    t2 = time.time()
+    return (t2 - t1) * 340 * 100 / 2
 
 def type2id(objTpye):
     if objType == '可回收物':
@@ -98,10 +118,15 @@ def type2id(objTpye):
 #====================
 def depthDeteced():
     '检测当前桶深'
-    emptDis = 40
+    emptDis = 400
     move2pos(deltaPos(devPos, objID * 90 + 10))
     dis = urtalSonic()
-    return emptDis - dis
+    res = emptDis - dis
+    if res < 0:
+        res = 0
+    else:
+        pass
+    return res
 
 def moveAndThrow(objTpye):
     UI.waitingPage(browser, '分类ing……')
