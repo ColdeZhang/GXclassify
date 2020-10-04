@@ -1,7 +1,7 @@
 import time as sleep
 import extension as ex
 import UIExecutor as UI
-import objectRecogni as OR
+import objectRecogni
 import RPi.GPIO as GPIO
 
 # devInfo = ['16','7','32','6','78','15','2','4']
@@ -31,8 +31,8 @@ try:
             # main logic
             print('start')
             UI.waitingPage(ex.browser, '正在识别，请稍后……')
-            objName = OR()
-            objType = OR()
+            objName = OR.ans()
+            objType = OR.ans()
             UI.outputPage(ex.browser, objName, objType)
             if objType == '可回收物':
                 UI.waitingPage(ex.browser, '正在压缩……')

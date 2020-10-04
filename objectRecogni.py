@@ -66,7 +66,7 @@ def get_classlabel(class_code):
     
     
 
-def OR():
+def ans():
     pred_images,no_labels = get_images('res/or_input_res/seg_pred/')
     pred_images = np.array(pred_images)
     print(pred_images.shape)
