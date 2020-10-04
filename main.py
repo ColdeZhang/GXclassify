@@ -1,5 +1,5 @@
 import time as sleep
-from extension import extension as ex
+import extension as ex
 import UIExecutor as UI
 import objectRecogni as OR
 import RPi.GPIO as GPIO
@@ -16,7 +16,6 @@ import RPi.GPIO as GPIO
 # #time.sleep(16)
 # #UI.devInfoPage(brow,devInfo)
 
-browser = UI.init()
 btnState = False
 
 
@@ -31,23 +30,23 @@ try:
         elif btnState == True:
             # main logic
             print('start')
-            UI.waitingPage(browser, '正在识别，请稍后……')
+            UI.waitingPage(ex.browser, '正在识别，请稍后……')
             objName = OR()
             objType = OR()
-            UI.outputPage(browser, objName, objType)
+            UI.outputPage(ex.browser, objName, objType)
             if objType == '可回收物':
-                UI.waitingPage(browser, '正在压缩……')
+                UI.waitingPage(ex.browser, '正在压缩……')
                 ex.crush()
                 ex.moveAndThrow(objType)
             else:
                 ex.moveAndThrow(objType)
-            UI.waitingPage(browser, '等待设备反馈……')
+            UI.waitingPage(ex.browser, '等待设备反馈……')
             typeID = ex.type2id(objType) * 2
             devInfo[typeID] = ex.depthDeteced(objType)
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
             UI.devInfoPage(devInfo)
             sleep(6)
-            UI.videoPage(browser)
+            UI.videoPage(ex.browser)
             btnState = False
 finally:
     GPIO.cleanup()

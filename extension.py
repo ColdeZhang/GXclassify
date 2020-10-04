@@ -3,7 +3,6 @@ import RPi.GPIO as GPIO
 import sys
 import time
 import UIExecutor as UI
-import main
 
 
 btnPin = 4
@@ -17,6 +16,7 @@ stepperPin = [5, 6, 13, 19, 26, 25]
 lmtSwitch = [22, 23, 24]
 
 devPos = 0
+browser = UI.init()
 
 def devInit():
     '设备初始化'
