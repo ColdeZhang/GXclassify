@@ -62,10 +62,10 @@ def stepperCtrl(stepperID):
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
     GPIO.output(stepperPin[stepperID*2], GPIO.HIGH)
-    for i in dis:
+    for i in range(dis):
         stepperCtrl(stepperID)
     GPIO.output(stepperPin[stepperID*2], GPIO.LOW)
-    for i in dis:
+    for i in range(dis):
         stepperCtrl(stepperID)
 
 def crush():
