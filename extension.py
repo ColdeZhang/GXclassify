@@ -8,7 +8,7 @@ import UIExecutor as UI
 btnPin = 4
 usPin = 17
 usEcho = 18
-obsSens = 27
+obsSen = 27
 #--------------1-----2-----3
 #-------------压缩---旋转---投放
 #------------s--r--s---r--s--r
@@ -25,7 +25,7 @@ def devInit():
     GPIO.setup(btnPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(usPin, GPIO.OUT)
     GPIO.setup(usEcho, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(obsSens, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(obsSen, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     for i in range(6):
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(3):
