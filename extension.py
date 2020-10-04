@@ -61,10 +61,10 @@ def stepperCtrl(stepperID):
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
-    GPIO.output(stepperPin[(stepperID-1)*2], GPIO.HIGH)
+    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.HIGH)
     for i in range(dis):
         stepperCtrl(stepperID)
-    GPIO.output(stepperPin[(stepperID-1)*2], GPIO.LOW)
+    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.LOW)
     for i in range(dis):
         stepperCtrl(stepperID)
 
