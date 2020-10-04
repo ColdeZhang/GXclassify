@@ -141,7 +141,7 @@ def depthDeteced(objType):
         res = 0
     else:
         pass
-    return res
+    return (res/emptDis)*100
 
 def moveAndThrow(objType):
     UI.waitingPage(browser, '分类ing……')
