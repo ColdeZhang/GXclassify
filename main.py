@@ -1,5 +1,5 @@
 import time as sleep
-import extension
+import extension as ex
 import UIExecutor as UI
 import objectRecogni as OR
 import RPi.GPIO as GPIO
@@ -24,7 +24,7 @@ btnState = False
 devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 
 try:
-    while extension.devInit():
+    while ex.devInit():
         if btnState == False:
             btnState = ex.btnPressed()        
         elif btnState == True:
