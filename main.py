@@ -34,7 +34,7 @@ try:
         elif btnState == True and devFull == True:
             UI.waitingPage(ex.browser, '等待设备反馈……')
             if ex.obsSens():
-                UI.warningPage(ex.browser, '更换失败！')
+                UI.warningPage(ex.browser, '已满，未更换，请联系工作人员！')
             else:
                 devFull = False
                 UI.videoPage(ex.browser)
@@ -61,8 +61,8 @@ try:
             devInfo[typeID] = ex.depthDeteced(objType)
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
             UI.devInfoPage(ex.browser, devInfo)
-            time.sleep(4)
-            if devInfo[typeID] >= 100 and ex.obsSens():
+            time.sleep(6)
+            if devInfo[typeID] >= 90 and ex.obsSens():
                 UI.warningPage(ex.browser, '垃圾箱已满，请联系工作人员！')
                 devFull = True
             else:
