@@ -17,6 +17,10 @@ import RPi.GPIO as GPIO
 # #UI.devInfoPage(brow,devInfo)
 
 btnState = False
+devFull = False
+
+#idBuffer = 0
+#typeBuffer = ''
 
 initT = ex.devInit()
 #----------可回收物---厨余垃圾---其他垃圾---有害垃圾
@@ -26,13 +30,23 @@ devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 try:
     while initT == True:
         if btnState == False:
-            btnState = ex.btnPressed()        
-        elif btnState == True:
+            btnState = ex.btnPressed()
+        elif btnState == True and devFull == True:
+            UI.waitingPage(ex.browser, '等待设备反馈……')
+            if ex.obsSens():
+                UI.warningPage(ex.browser, '更换失败！')
+            else:
+                devFull = False
+                UI.videoPage(ex.browser)
+            btnState = False
+            #devInfo[idBuffer] = ex.depthDeteced(typeBuffer)
+        elif btnState == True and devFull == False:
             # main logic
             print('start')
             UI.waitingPage(ex.browser, '正在识别，请稍后……')
             objName = OR.ans()
-            objType = '可回收物'
+            objType = '可回收物'    #此处更换
+            #typeBuffer = objType
             UI.outputPage(ex.browser, objName, objType)
             time.sleep(6)
             if objType == '可回收物':
@@ -43,11 +57,16 @@ try:
                 ex.moveAndThrow(objType)
             UI.waitingPage(ex.browser, '等待设备反馈……')
             typeID = ex.type2id(objType) * 2
+            #idBuffer = typeID
             devInfo[typeID] = ex.depthDeteced(objType)
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
             UI.devInfoPage(ex.browser, devInfo)
             time.sleep(4)
-            UI.videoPage(ex.browser)
+            if devInfo[typeID] >= 100 and ex.obsSens():
+                UI.warningPage(ex.browser, '垃圾箱已满，请联系工作人员！')
+                devFull = True
+            else:
+                UI.videoPage(ex.browser)
             btnState = False
 finally:
     GPIO.cleanup()
