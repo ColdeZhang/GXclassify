@@ -43,6 +43,9 @@ def stepperInit():
             stepperCtrl(i)
         print(i,"号电机复位成功")
     devPos = 0
+    GPIO.output(stepperPin[5], GPIO.HIGH)
+    for i in range(1600):
+        stepperCtrl(3)
 
 #============================
 def btnPressed():
@@ -70,7 +73,13 @@ def stepMoveBack(stepperID, dis):
 
 def crush():
     '执行压缩'
-    stepMoveBack(1, 1600)
+    #stepMoveBack(1, 1600)
+    gpio.output(17, True)
+    gpio.output(22, False)
+    time.sleep(sec)
+    gpio.output(17, False)
+    gpio.output(22, True)
+    
 
 def throw():
     '执行投掷'
