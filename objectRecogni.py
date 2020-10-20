@@ -63,9 +63,6 @@ def get_classlabel(class_code):
     
     return labels[class_code]
     
-    
-    
-
 def ans():
     pred_images,no_labels = get_images('res/or_input_res/seg_pred/')
     pred_images = np.array(pred_images)

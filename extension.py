@@ -38,9 +38,9 @@ def devInit():
 
 def stepperInit():
     '步进电机初始化'
-    for i in range(3):
-        while GPIO.input(lmtSwitch[i-1]) == GPIO.HIGH:
-            stepperCtrl(i)
+    for i in range(2):
+        while GPIO.input(lmtSwitch[i]) == GPIO.HIGH:
+            stepperCtrl(i + 1)
         print(i,"号电机复位成功")
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.HIGH)
@@ -74,11 +74,11 @@ def stepMoveBack(stepperID, dis):
 def crush():
     '执行压缩'
     #stepMoveBack(1, 1600)
-    gpio.output(17, True)
-    gpio.output(22, False)
+    gpio.output(5, True)
+    gpio.output(6, False)
     time.sleep(sec)
-    gpio.output(17, False)
-    gpio.output(22, True)
+    gpio.output(5, False)
+    gpio.output(6, True)
     
 
 def throw():
