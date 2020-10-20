@@ -30,7 +30,7 @@ def devInit():
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(2):
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
-        GPIO.output(stepperPin[i*2], GPIO.LOW)
+        GPIO.output(stepperPin[i*2], GPIO.HIGH)
     stepperInit()
     UI.videoPage(browser)
     return True
@@ -43,8 +43,8 @@ def stepperInit():
             stepperCtrl(i-1)
         print(i,"号电机复位成功")
     devPos = 0
-    GPIO.output(stepperPin[5], GPIO.HIGH)
-    for i in range(2000):
+    GPIO.output(stepperPin[5], GPIO.LOW)
+    for i in range(2400):
         stepperCtrl(3)
 
 #============================
@@ -76,14 +76,14 @@ def crush():
     #stepMoveBack(1, 1600)
     GPIO.output(5, True)
     GPIO.output(6, False)
-    time.sleep(18)
+    time.sleep(22)
     GPIO.output(5, False)
     GPIO.output(6, True)
     
 
 def throw():
     '执行投掷'
-    stepMoveBack(3, 2000)
+    stepMoveBack(3, 2400)
 
 def move2pos(angle):
     '旋转到指定位置'
