@@ -32,7 +32,7 @@ def devInit():
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
         GPIO.output(stepperPin[i*2], GPIO.LOW)
     stepperInit()
-    UI.videoPage(browser)q
+    UI.videoPage(browser)
     return True
     
 
