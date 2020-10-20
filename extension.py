@@ -44,7 +44,7 @@ def stepperInit():
         print(i,"号电机复位成功")
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.LOW)
-    for i in range(2600):
+    for i in range(2800):
         stepperCtrl(3)
 
 #============================
@@ -79,11 +79,12 @@ def crush():
     time.sleep(22)
     GPIO.output(5, False)
     GPIO.output(6, True)
+    time.sleep(5)
     
 
 def throw():
     '执行投掷'
-    stepMoveBack(3, 2600)
+    stepMoveBack(3, 2800)
 
 def move2pos(angle):
     '旋转到指定位置'
