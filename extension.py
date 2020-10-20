@@ -30,7 +30,7 @@ def devInit():
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
     for i in range(3):
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
-        GPIO.output(stepperPin[i*2], GPIO.HIGH)
+        GPIO.output(stepperPin[i*2], GPIO.LOW)
     stepperInit()
     UI.videoPage(browser)
     return True
