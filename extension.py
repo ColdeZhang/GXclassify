@@ -64,10 +64,10 @@ def stepperCtrl(stepperID):
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
-    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.HIGH)
+    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.LOW)
     for i in range(dis):
         stepperCtrl(stepperID)
-    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.LOW)
+    GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.HIGH)
     for i in range(dis):
         stepperCtrl(stepperID)
 
@@ -76,7 +76,7 @@ def crush():
     #stepMoveBack(1, 1600)
     GPIO.output(5, True)
     GPIO.output(6, False)
-    time.sleep(4)
+    time.sleep(18)
     GPIO.output(5, False)
     GPIO.output(6, True)
     
