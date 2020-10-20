@@ -28,7 +28,7 @@ def devInit():
     GPIO.setup(obsSen, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     for i in range(6):
         GPIO.setup(stepperPin[i - 1], GPIO.OUT)
-    for i in range(3):
+    for i in range(2):
         GPIO.setup(lmtSwitch[i - 1], GPIO.IN)
         GPIO.output(stepperPin[i*2], GPIO.LOW)
     stepperInit()
@@ -39,12 +39,12 @@ def devInit():
 def stepperInit():
     '步进电机初始化'
     for i in range(2):
-        while GPIO.input(lmtSwitch[i]) == GPIO.HIGH:
-            stepperCtrl(i)
+        while GPIO.input(lmtSwitch[i-1]) == GPIO.HIGH:
+            stepperCtrl(i-1)
         print(i,"号电机复位成功")
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.HIGH)
-    for i in range(1600):
+    for i in range(2000):
         stepperCtrl(3)
 
 #============================
