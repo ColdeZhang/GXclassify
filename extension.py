@@ -74,11 +74,11 @@ def stepMoveBack(stepperID, dis):
 def crush():
     '执行压缩'
     #stepMoveBack(1, 1600)
-    gpio.output(5, True)
-    gpio.output(6, False)
+    GPIO.output(5, True)
+    GPIO.output(6, False)
     time.sleep(sec)
-    gpio.output(5, False)
-    gpio.output(6, True)
+    GPIO.output(5, False)
+    GPIO.output(6, True)
     
 
 def throw():
