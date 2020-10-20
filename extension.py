@@ -76,7 +76,7 @@ def crush():
     #stepMoveBack(1, 1600)
     GPIO.output(5, True)
     GPIO.output(6, False)
-    time.sleep(sec)
+    time.sleep(4)
     GPIO.output(5, False)
     GPIO.output(6, True)
     
