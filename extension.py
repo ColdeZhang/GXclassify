@@ -141,7 +141,7 @@ def obsSens():
 #====================
 def depthDeteced(objType):
     '检测当前桶深'
-    emptDis = 400
+    emptDis = 300
     objID = type2id(objType)
     move2pos(deltaPos(devPos, objID * 90 + 10))
     dis = urtalSonic()
