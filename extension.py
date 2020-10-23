@@ -115,7 +115,7 @@ def deltaPos(start, end):
 def urtalSonic():
     '超声波测距'
     GPIO.output(usPin, GPIO.HIGH)
-    time.sleep(0.00015)
+    time.sleep(1)
     GPIO.output(usPin, GPIO.LOW)
     while not GPIO.input(usEcho):
         pass
@@ -162,6 +162,3 @@ def moveAndThrow(objType):
     move2pos(deltaPos(devPos, objID * 90) + 5)
     UI.waitingPage(browser, '投递ing……')
     throw()
-
-
-
