@@ -79,23 +79,13 @@ def crush():
     time.sleep(38)
     GPIO.output(5, False)
     GPIO.output(6, True)
-    time.sleep(40)
+    time.sleep(20)
     
 
 def throw():
     '执行投掷'
-    GPIO.output(stepperPin[(3-1)*2+1], GPIO.HIGH)
-    for i in range(2900):
-        stepperCtrl(3)
-    GPIO.output(5, True)
-    GPIO.output(6, False)
-    time.sleep(10)
-    GPIO.output(stepperPin[(3-1)*2+1], GPIO.LOW)
-    for i in range(2900):
-        stepperCtrl(3)
-    GPIO.output(5, False)
-    GPIO.output(6, True)
-    time.sleep(12)
+    stepMoveBack(3,2900)
+    
 
 def move2pos(angle):
     '旋转到指定位置'
