@@ -115,7 +115,7 @@ def deltaPos(start, end):
 def urtalSonic():
     '超声波测距'
     GPIO.output(usPin, GPIO.HIGH)
-    time.sleep(1)
+    time.sleep(0.00015)
     GPIO.output(usPin, GPIO.LOW)
     while not GPIO.input(usEcho):
         pass
