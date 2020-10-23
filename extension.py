@@ -58,9 +58,9 @@ def btnPressed():
 def stepperCtrl(stepperID):
     '步进电机基础控制，传入电机编号'
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.HIGH)
-    time.sleep(0.0006)
+    time.sleep(0.0015)
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.LOW)
-    time.sleep(0.0006)
+    time.sleep(0.0015)
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
@@ -85,6 +85,12 @@ def crush():
 def throw():
     '执行投掷'
     stepMoveBack(3, 2900)
+    GPIO.output(5, True)
+    GPIO.output(6, False)
+    time.sleep(5)
+    GPIO.output(5, False)
+    GPIO.output(6, True)
+    time.sleep(5)
 
 def move2pos(angle):
     '旋转到指定位置'
@@ -97,6 +103,7 @@ def move2pos(angle):
     
 
 def deltaPos(start, end):
+    '计算出发点与目标之间最短路径'
     if end >= 360:
         end = end - 360
 
