@@ -61,7 +61,7 @@ def get_classlabel(class_code):
 
 
 
-new_model = tf.keras.models.load_model('res/or_model/my_model4.h5')
+new_model = tf.keras.models.load_model('res/or_model/my_model5.h5')
 
 
 def pred_name():
