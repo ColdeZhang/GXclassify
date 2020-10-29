@@ -65,7 +65,7 @@ new_model = tf.keras.models.load_model('res/or_model/my_model5.h5')
 
 
 def pred_name():
-    pred_images,no_labels = get_images('image.jpg')  #目录结构
+    pred_images,no_labels = get_images('res/or_input_res/seg_pred/')  #目录结构
     pred_images = np.array(pred_images)
     #pred_images.shape
     rnd_number = randint(0,len(pred_images))

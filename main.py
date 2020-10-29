@@ -34,7 +34,7 @@ try:
         elif btnState == True and devFull == False:
             # main logic
             print('start')
-            os.system("fswebcam -s 10 --no-banner -r 640x480 --save image.jpg")
+            os.system("fswebcam -s 10 --no-banner -r 640x480 --save res/or_input_res/seg_pred/image.jpg")
             UI.waitingPage(ex.browser, '正在识别，请稍后……')
             objName = OR.pred_name()
             objType = ex.name2type(objName)    #此处更换
