@@ -3,6 +3,9 @@ import extension as ex
 import UIExecutor as UI
 import objectRecogni as OR
 import RPi.GPIO as GPIO
+import os
+import sys
+import re
 
 btnState = False
 devFull = False
@@ -31,9 +34,10 @@ try:
         elif btnState == True and devFull == False:
             # main logic
             print('start')
+            os.system("fswebcam -s 10 --no-banner -r 640x480 --save image.jpg")
             UI.waitingPage(ex.browser, '正在识别，请稍后……')
-            objName = OR.ans()
-            objType = '可回收物'    #此处更换
+            objName = OR.pred_name()
+            objType = ex.name2type(objName)    #此处更换
             #typeBuffer = objType
             UI.outputPage(ex.browser, objName, objType)
             time.sleep(6)
@@ -50,7 +54,8 @@ try:
             devInfo[typeID + 1] = devInfo[typeID + 1] + 1
             UI.devInfoPage(ex.browser, devInfo)
             time.sleep(6)
-            if devInfo[typeID] >= 90 and ex.obsSens():
+            #if devInfo[typeID] >= 90 and ex.obsSens():
+            if ex.obsSens():
                 UI.warningPage(ex.browser, '垃圾箱已满，请联系工作人员！')
                 devFull = True
             else:

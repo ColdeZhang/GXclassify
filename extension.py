@@ -5,6 +5,8 @@ import time
 import UIExecutor as UI
 
 
+
+
 btnPin = 4
 usPin = 17
 usEcho = 18
@@ -45,7 +47,7 @@ def stepperInit():
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.LOW)
     for i in range(2900):
-        stepperCtrl(3)
+        stepperCtrl(3, 0.0015)
 
 #============================
 def btnPressed():
@@ -55,21 +57,21 @@ def btnPressed():
         result = False
     return result
 
-def stepperCtrl(stepperID):
+def stepperCtrl(stepperID, delay):
     '步进电机基础控制，传入电机编号'
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.HIGH)
-    time.sleep(0.0015)
+    time.sleep(delay)
     GPIO.output(stepperPin[(stepperID -1)*2], GPIO.LOW)
-    time.sleep(0.0015)
+    time.sleep(delay)
 
 def stepMoveBack(stepperID, dis):
     '电机往复运动'
     GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.HIGH)
     for i in range(dis):
-        stepperCtrl(stepperID)
+        stepperCtrl(stepperID, 0.0015)
     GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.LOW)
     for i in range(dis):
-        stepperCtrl(stepperID)
+        stepperCtrl(stepperID, 0.0015)
 
 def crush():
     '执行压缩'
@@ -94,7 +96,7 @@ def move2pos(angle):
     elif  angle < 0:
         GPIO.output(stepperPin[3], GPIO.LOW)
     for i in range(int(angle * 190 / 16.2)):
-        stepperCtrl(2)
+        stepperCtrl(2, 0.006)
     
 
 def deltaPos(start, end):
@@ -140,6 +142,18 @@ def obsSens():
         return True
     else:
         return False
+
+def name2type(name):
+    if name == '电池':
+        return '有害垃圾'
+    elif name == '废纸':
+        return '可回收物'
+    elif name == '瓶子':
+        return '可回收物'
+    elif name == '橘子皮':
+        return '厨余垃圾'
+    elif name == '易拉罐':
+        return '可回收物'
 
 #====================
 def depthDeteced(objType):

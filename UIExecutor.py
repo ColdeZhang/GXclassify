@@ -2,7 +2,6 @@ import sys
 import time
 from selenium import webdriver
 import webbrowser
-import pyvirtualdisplay
 
 def init():
     '初始化UI界面'

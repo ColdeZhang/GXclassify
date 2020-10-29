@@ -15,12 +15,9 @@ from random import randint
 from IPython.display import SVG
 import matplotlib.gridspec as gridspec
 import tensorflow as tf
-import keras
+tf.__version__
 
 
-
-new_model = tf.keras.models.load_model('res/or_model/my_model5.h5')
-new_model.summary()
 
 
 def get_images(directory):
@@ -29,18 +26,17 @@ def get_images(directory):
     Labels = []  
     
     for labels in os.listdir(directory): #Main Directory where each class label is present as folder name.
-        if labels == 'cardborad': #Folder contain Glacier Images get the '2' class label.
-            label = 2
-        elif labels == 'metal':
-            label = 4
-        elif labels == 'plastic':
+        if labels == 'battery': #Folder contain Glacier Images get the '2' class label.
             label = 0
         elif labels == 'paper':
             label = 1
-        elif labels == 'glass':
-            label = 5
-        elif labels == 'trash':
+        elif labels == 'bottle':
+            label = 2
+        elif labels == 'orange':
             label = 3
+        elif labels == 'can':
+            label = 4
+     
         
         for image_file in os.listdir(directory+labels): #Extracting the file name of the image from Class Label folder
             
@@ -59,15 +55,23 @@ def get_images(directory):
     return shuffle(Images,Labels,random_state=817328462) #Shuffle the dataset you just prepared.
 
 def get_classlabel(class_code):
-    labels = {2:'cardboard', 4:'metal', 0:'plastic', 1:'paper', 5:'glass', 3:'trash'}
+    labels = {0:'电池', 1:'废纸', 2:'瓶子', 3:'橘子皮', 4:'易拉罐'}
     
     return labels[class_code]
-    
-def ans():
-    pred_images,no_labels = get_images('res/or_input_res/seg_pred/')
-    pred_images = np.array(pred_images)
-    print(pred_images.shape)
-    pred_class = get_classlabel(new_model.predict_classes(pred_images)[0])
-    print(pred_class)
-    return pred_class
 
+
+
+new_model = tf.keras.models.load_model('my_model4.h5')
+
+
+def pred_name():
+    pred_images,no_labels = get_images('image.jpg')  #目录结构
+    pred_images = np.array(pred_images)
+    #pred_images.shape
+    rnd_number = randint(0,len(pred_images))
+    pred_image = np.array(pred_images)
+    pred_class = get_classlabel(new_model.predict_classes(pred_image)[0])
+    pred_prob = new_model.predict(pred_image).reshape(5)
+    print(pred_class)
+    print(pred_prob)
+    return pred_class
