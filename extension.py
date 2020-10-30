@@ -44,6 +44,7 @@ def stepperInit():
         while GPIO.input(lmtSwitch[i-1]) == GPIO.HIGH:
             stepperCtrl(i-1, 0.006)
         print(i,"号电机复位成功")
+    global devPos
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.LOW)
     for i in range(2900):
@@ -103,7 +104,6 @@ def deltaPos(start, end):
     '计算出发点与目标之间最短路径'
     if end >= 360:
         end = end - 360
-
     if abs(end - start) <= 180:
         delta = end - start
     else:
@@ -111,7 +111,9 @@ def deltaPos(start, end):
             delta = end - start - 360
         else:
             delta = 360 - start + end
+    global devPos
     devPos = end
+    #print(devPos)
     return delta
 
 def urtalSonic():
@@ -173,6 +175,8 @@ def depthDeteced(objType):
 def moveAndThrow(objType):
     UI.waitingPage(browser, '分类ing……')
     objID = type2id(objType)
-    move2pos(deltaPos(devPos, objID * 90) + 5)
+    move2pos(deltaPos(devPos, objID * 90))
+    #devPos = devPos + (objID * 90)
+    print(devPos)
     UI.waitingPage(browser, '投递ing……')
     throw()
