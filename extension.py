@@ -113,7 +113,7 @@ def deltaPos(start, end):
             delta = 360 - start + end
     global devPos
     devPos = end
-    #print(devPos)
+    print(delta)
     return delta
 
 def urtalSonic():
@@ -176,7 +176,5 @@ def moveAndThrow(objType):
     UI.waitingPage(browser, '分类ing……')
     objID = type2id(objType)
     move2pos(deltaPos(devPos, objID * 90))
-    #devPos = devPos + (objID * 90)
-    print(devPos)
     UI.waitingPage(browser, '投递ing……')
     throw()
