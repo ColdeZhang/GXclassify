@@ -94,9 +94,9 @@ def move2pos(angle):
     '旋转到指定位置'
     if angle >= 0:
         GPIO.output(stepperPin[3], GPIO.HIGH)
-    elif  angle < 0:
+    elif angle < 0:
         GPIO.output(stepperPin[3], GPIO.LOW)
-    for i in range(int(angle * 190 / 16.2)):
+    for i in range(int(abs(angle) * 190 / 16.2)):
         stepperCtrl(2, 0.006)
     
 
