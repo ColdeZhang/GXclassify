@@ -42,7 +42,7 @@ def stepperInit():
     '步进电机初始化'
     for i in range(2):
         while GPIO.input(lmtSwitch[i-1]) == GPIO.HIGH:
-            stepperCtrl(i-1, 0.0015)
+            stepperCtrl(i-1, 0.006)
         print(i,"号电机复位成功")
     devPos = 0
     GPIO.output(stepperPin[5], GPIO.LOW)
