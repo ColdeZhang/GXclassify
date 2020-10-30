@@ -29,7 +29,7 @@ def waitingPage(brow, waitMsg):
 
 def warningPage(brow, warnMsg):
     '警告页面'
-    updatePage('<html><body bgcolor="black"><span ></span><h1 style="color: #ffffff">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div style="height: 10%"></div><div style="text-align: center; width: 100% "><img src="res/UI_res/warning.png" width="40%"  alt=""/></div><div style="font-size: 30px; text-align: center; font-style: inherit; font-weight: bold;color: #ffffff">{}</div></body></html>'.format(waitMsg))
+    updatePage('<html><body bgcolor="black"><span ></span><h1 style="color: #ffffff">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div style="height: 10%"></div><div style="text-align: center; width: 100% "><img src="res/UI_res/warning.png" width="40%"  alt=""/></div><div style="font-size: 30px; text-align: center; font-style: inherit; font-weight: bold;color: #ffffff">{}</div></body></html>'.format(warnMsg))
     brow.refresh()
     pass
 
