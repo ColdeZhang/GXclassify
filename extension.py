@@ -170,7 +170,7 @@ def depthDeteced(objType):
     '检测当前桶深'
     emptDis = 300
     objID = type2id(objType)
-    move2pos(deltaPos(devPos, objID * 90 + 15))
+    move2pos(deltaPos(devPos, objID * 90 + 30))
     dis = urtalSonic()
     print(dis)
     res = emptDis - dis
