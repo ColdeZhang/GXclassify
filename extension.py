@@ -84,7 +84,7 @@ def crush():
     time.sleep(36)
     GPIO.output(5, False)
     GPIO.output(6, True)
-    time.sleep(8)
+    time.sleep(18)
     
 
 def throw():
