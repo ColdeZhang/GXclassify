@@ -72,6 +72,9 @@ def stepMoveBack(stepperID, dis):
     GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.HIGH)
     for i in range(dis):
         stepperCtrl(stepperID, 0.0015)
+    GPIO.output(5, True)
+    GPIO.output(6, False)
+    time.sleep(6)
     GPIO.output(5, False)
     GPIO.output(6, True)
     GPIO.output(stepperPin[(stepperID-1)*2+1], GPIO.LOW)
@@ -91,8 +94,6 @@ def crush():
 
 def throw():
     '执行投掷'
-    GPIO.output(5, True)
-    GPIO.output(6, False)
     stepMoveBack(3,2900)
 
     
