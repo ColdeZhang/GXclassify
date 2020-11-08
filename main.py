@@ -1,7 +1,8 @@
 import time
 import extension as ex
 import UIExecutor as UI
-import objectRecogni as OR
+#import objectRecogni as OR
+import ORrequest as OR
 import RPi.GPIO as GPIO
 import os
 import sys
