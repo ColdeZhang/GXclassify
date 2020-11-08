@@ -13,7 +13,7 @@ r = signer.HttpRequest("POST",
 sig.Sign(r)
 
 def pred_name():
-    files = {'attach': ('image.jpg', open('file:///home/pi/Desktop/GXclassify/res/or_input_res/seg_pred/', 'rb'))}
+    files = {'attach': ('image.jpg', open('../res/or_input_res/seg_pred/image.jpg', 'rb'))}
     resp = requests.request(r.method, r.scheme + "://" + r.host + r.uri, headers=r.headers, data=r.body, files = files)
     print(resp.status_code, resp.reason)
     print(resp.content)
