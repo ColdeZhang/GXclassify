@@ -3,17 +3,18 @@ import requests
 
 
 sig = signer.Signer()
-sig.Key = ""
-sig.Secret = ""
+sig.Key = "QCPZAOV2ZM4F0XPG1ZMI"
+sig.Secret = "R3JOG5NjKwk7LjBteTA3wjl06oofvfpvApEiZpgi"
 
 r = signer.HttpRequest("POST",
-    "https://1684994b180244de9d141c00d3e52c73.apig.exampleRegion.huaweicloudapis.com/v1/infers/exampleServiceId",
+    "https://1692ab7327d44d489e01d977444bfa12.apig.cn-north-4.huaweicloudapis.com/v1/infers/d95863ea-830b-44f1-bc41-e7a9a2828790",
     {"x-stage": "RELEASE"},
      "body")
 sig.Sign(r)
 
 def pred_name():
-    resp = requests.request(r.method, r.scheme + "://" + r.host + r.uri, headers=r.headers, data=r.body)
+    files = {'attach': ('image.jpg', open('/res/or_input_res/seg_pred/', 'rb'))}
+    resp = requests.request(r.method, r.scheme + "://" + r.host + r.uri, headers=r.headers, data=r.body, files = files)
     print(resp.status_code, resp.reason)
     print(resp.content)
-    return resp.content
+    return resp.predicted_label
