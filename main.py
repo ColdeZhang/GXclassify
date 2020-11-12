@@ -14,6 +14,7 @@ devFull = False
 #idBuffer = 0
 #typeBuffer = ''
 
+
 initT = ex.devInit()
 #----------可回收物---厨余垃圾---其他垃圾---有害垃圾
 #----------容量-个数--容量-个数--容量-个数--容量-个数
