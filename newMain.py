@@ -49,8 +49,9 @@ while True:
         devInfo[3] = devInfo[3]+1
         read_ser = ""
         pass
-    elif(int(read_ser)>0 and int(read_ser)<7):
-        nameNum[int(read_ser)-1] = nameNum[int(read_ser)-1] + 1
+    elif(read_ser == "1" or read_ser == "2" or read_ser == "3" or read_ser == "4" or read_ser == "5" or read_ser == "6" or):
+        id = int(read_ser)
+        nameNum[id-1] = nameNum[id-1] + 1
         read_ser = ""
         pass
     elif(read_ser == "end"):
