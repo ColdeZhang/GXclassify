@@ -46,6 +46,12 @@ def devInfoPage(brow, devInfo):
     brow.refresh()
     pass
 
+def listPage(brow, nameNum):
+    '结果列表'
+    updatePage('<html><body bgcolor="black"><span></span><h1 style="color: white">工程训练自动垃圾分类系统</h1><p>&nbsp;</p><div class="container-fluid"><div class="row-fluid"><div class="span12"><div class="row-fluid"><div class="span3" style="float: left; width: 30%; margin-left: 4%;height: 70%;margin-top: 5%"></div><div class="span3" style="float: left; width: 20%; margin-left: 4%;height: 70%;margin-top: 5%"><div style="color: white">编号&nbsp;&nbsp;名称&nbsp;&nbsp;数量&nbsp;&nbsp;状态</div><div style="color: white">1.&nbsp;&nbsp;&nbsp;&nbsp;5号电池&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">2.&nbsp;&nbsp;&nbsp;&nbsp;橘子皮&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">3.&nbsp;&nbsp;&nbsp;&nbsp;水泥块&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">4.&nbsp;&nbsp;&nbsp;&nbsp;报纸团&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">5.&nbsp;&nbsp;&nbsp;&nbsp;易拉罐&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">6.&nbsp;&nbsp;&nbsp;&nbsp;矿泉水&nbsp;&nbsp;{}&nbsp;&nbsp;ok!</div><div style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;分类完成！</div></div><div class="span3" style="float: left; width: 30%; margin-left: 4%;height: 70%;margin-top: 5%"></div></div></div></div></div></body></html>'.format(nameNum[0],nameNum[1],nameNum[2],nameNum[3],nameNum[4],nameNum[5]))
+    brow.refresh()
+    pass
+
 def updatePage(input):
     '更新UI界面'
     with open("ui.html","w") as f:

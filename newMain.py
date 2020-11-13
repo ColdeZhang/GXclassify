@@ -14,6 +14,8 @@ read_ser = ""
 #----------容量-个数--容量-个数--容量-个数--容量-个数
 devInfo = [  0,  0,   0,  0,   0,  0,   0,  0]
 US = [4,17,27,22,5,6,13,19]
+#---------五号电池；橘子皮；不规则水泥块；废报纸团；易拉罐；矿泉水瓶
+nameNum = [0,     0,     0,          0,      0,     0]
 
 for i in range(4):
     GPIO.setup(US[i*2], GPIO.OUT)
@@ -47,32 +49,35 @@ while True:
         devInfo[3] = devInfo[3]+1
         read_ser = ""
         pass
+    elif(int(read_ser)>0 and int(read_ser)<7):
+        nameNum[int(read_ser)-1] = nameNum[int(read_ser)-1] + 1
+        read_ser = ""
+        pass
+    elif(read_ser == "end"):
+        UI.listPage(browser, nameNum)
+        read_ser = ""
     elif(read_ser == "manzaijiance"):
         UI.waitingPage(browser, '检测容量中……')
         for i in range(4):
-            devInfo[i*2] = urtalSonic[i]
+            GPIO.output(US[i*2], GPIO.HIGH)
+            time.sleep(0.00015)
+            GPIO.output(US[i*2], GPIO.LOW)
+            while not GPIO.input(US[i*2+1]):
+                pass
+            t1 = time.time()
+            while GPIO.input(US[i*2+1]):
+                pass
+            t2 = time.time()
+            dis = (t2 - t1) * 340 * 1000 / 2
+            res = 300 - dis
+            if res < 0:
+                res = 0
+            else:
+                pass
+            devInfo[i*2] = round((res/300)*100, 1)
         read_ser = ""
         pass
     elif(read_ser == "fenleiwancheng"):
         UI.devInfoPage(browser, devInfo)
         read_ser = ""
         pass
-
-def urtalSonic(i):
-    '超声波测距'
-    GPIO.output(i*2, GPIO.HIGH)
-    time.sleep(0.00015)
-    GPIO.output(i*2, GPIO.LOW)
-    while not GPIO.input(i*2+1):
-        pass
-    t1 = time.time()
-    while GPIO.input(i*2+1):
-        pass
-    t2 = time.time()
-    dis = (t2 - t1) * 340 * 1000 / 2
-    res = 300 - dis
-    if res < 0:
-        res = 0
-    else:
-        pass
-    return round((res/300)*100, 1)
